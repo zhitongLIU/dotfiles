@@ -1,0 +1,40 @@
+alias copy-clip='xclip -selection clipboard'
+alias paste-clip='xclip -o'
+alias clean-vim-swap='find ./ -type f -name "\.*sw[klmnop]";find ./ -type f -name "\.*sw[klmnop]" -delete'
+alias clean-vim-orig='find ./ -type f -name "*orig";find ./ -type f -name "*orig" -delete'
+alias upsync_dropbox='/home/lzt/Dropbox/dropbox_scripts/sync_dropbox.sh -u'
+alias downsync_dropbox='/home/lzt/Dropbox/dropbox_scripts/sync_dropbox.sh -d'
+alias sdcreds='source ~/sd-credsconf.sh'
+alias runselfdeploy='bundle exec redis-server &; bundle exec sidekiq &;bundle exec rails s'
+alias googleWeather='~/Scripts/googleBasedScripts/googleWeather.sh'
+alias googleNews='~/Scripts/googleBasedScripts/googleNews.sh'
+alias cdm='. /home/lzt/Scripts/cdbookmark.sh'
+alias cdl='. /home/lzt/Scripts/last_cdbookmark.sh'
+alias ffsd='. /home/lzt/sd_fixtures/auto_fill_fixture.sh'
+alias vim='. /home/lzt/Scripts/vim2pointOption.sh'
+alias rt='bin/rails test'
+alias rpt='bash /home/lzt/Scripts/rails_parallel_test.sh'
+alias rc='bundle exec rails c'
+alias rs='bundle exec rails s'
+alias rb='bundle exec rubocop'
+alias second_screen_config='. /home/lzt/Scripts/lbn_ubuntu/seconde_screen.sh'
+/* setxkbmap -layout us,fr -option grp:rctrl_rshift_toggle */
+
+alias rst='git status | grep modified | sed "s/modified\://g" | grep '.rb' | sed "s/both//g" | xargs bundle exec rubocop'
+alias gb_local_only="comm -23  <(git branch| sort) <(git branch -a | grep remotes | sed 's/remotes\/origin\///g'| sort)"
+alias gb_remote_only="comm -13 <(git branch| sort) <(git branch -a | grep remotes | sed 's/remotes\/origin\///g'| sort)"
+
+alias tina='~/bin/tina-3.4.4/bin/nd'
+stty -ixon
+alias t_pic='/usr/local/bin/picture-tube'
+alias kali_run='sudo docker run -t -i kalilinux/kali-linux-docker /bin/bash'
+alias vault='~/bin/vault'
+alias spotify-lyric='npm start --prefix ~/bin/lyricfier &'
+alias vault='~/bin/vault'
+bindkey "^b" backward-word
+bindkey "^f" forward-word
+
+# osx
+alias working='brew services start chunkwm; brew services start khd'
+alias normal='brew services stop chunkwm; brew services stop khd'
+
