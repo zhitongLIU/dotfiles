@@ -53,6 +53,7 @@ Plug 'rking/ag.vim'
 
 " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Surround.vim is all about "surroundings": parentheses, brackets, quotes
 Plug 'tpope/vim-surround'
@@ -388,6 +389,15 @@ let g:EasyMotion_do_mapping = 0
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
+let g:FZF_DEFAULT_COMMAND='ag'
+
+command! -bang -nargs=* Ag
+\ call fzf#vim#ag(<q-args>,
+\                 <bang>0 ? fzf#vim#with_preview('up:60%')
+\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+\                 <bang>0)
+nnoremap <silent> <Leader>A :Ag<CR>
+
 " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2)
 
@@ -409,7 +419,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " map <Leader>g :LustyBufferGrep<CR>
 
 " Plugin - ag.vim
-map <Leader>a :Ag --ignore 'tags' --ignore '*.yml' \
+" map <Leader>a :Ag --ignore 'tags' --ignore '*.yml' \
 let g:ag_working_path_mode="r"
 
 " LustyExplorer default setting
