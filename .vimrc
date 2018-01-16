@@ -168,8 +168,16 @@ map <leader>t :sh<cr>
 nmap <leader>p :call PasteToggle()<cr>
 
 " Plugin - system copy paste
-let g:system_copy#copy_command='xclip -sel clipboard'
-let g:system_copy#paste_command='xclip -sel clipboard -o'
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin\n"
+    let g:system_copy#copy_command='pbcopy'
+    let g:system_copy#paste_command='pbpaste'
+  else
+    let g:system_copy#copy_command='xclip -sel clipboard'
+    let g:system_copy#paste_command='xclip -sel clipboard -o'
+  endif
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface_Setting_Session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
