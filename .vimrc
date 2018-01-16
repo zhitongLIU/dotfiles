@@ -65,7 +65,7 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 " Plug 'mileszs/ack.vim'
 
 " LustyExplorer is a fast and responsive way to manage files and buffers in Vim
-Plug 'vim-scripts/LustyExplorer'
+" Plug 'vim-scripts/LustyExplorer'
 
 " Vim plugin that displays tags in a window
 " mayneedtoinstallCTAGS
@@ -406,7 +406,7 @@ vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 " Plugin - LustyExplorer setting
-map <Leader>g :LustyBufferGrep<CR>
+" map <Leader>g :LustyBufferGrep<CR>
 
 " Plugin - ag.vim
 map <Leader>a :Ag --ignore 'tags' --ignore '*.yml' \
