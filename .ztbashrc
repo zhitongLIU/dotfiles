@@ -4,13 +4,13 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias copy-clip='xclip -selection clipboard'
   alias paste-clip='xclip -o'
-  alias upsync_dropbox='$PWD/Dropbox/dropbox_scripts/sync_dropbox.sh -u'
-  alias downsync_dropbox='$PWD/Dropbox/dropbox_scripts/sync_dropbox.sh -d'
+  alias upsync_dropbox='~/Dropbox/dropbox_scripts/sync_dropbox.sh -u'
+  alias downsync_dropbox='~/Dropbox/dropbox_scripts/sync_dropbox.sh -d'
   alias googleWeather='~/Scripts/googleBasedScripts/googleWeather.sh'
   alias googleNews='~/Scripts/googleBasedScripts/googleNews.sh'
-# alias vim='. $PWD/Scripts/vim2pointOption.sh'
-  alias rpt='bash $PWD/Scripts/rails_parallel_test.sh'
-  alias second_screen_config='. $PWD/Scripts/lbn_ubuntu/seconde_screen.sh'
+# alias vim='. ~/Scripts/vim2pointOption.sh'
+  alias rpt='bash ~/Scripts/rails_parallel_test.sh'
+  alias second_screen_config='. ~/Scripts/lbn_ubuntu/seconde_screen.sh'
 # setxkbmap -layout us,fr -option grp:rctrl_rshift_toggle
   alias tina='~/bin/tina-3.4.4/bin/nd'
   stty -ixon
@@ -27,8 +27,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # my custom scripts
-alias cdm=". $PWD/Scripts/cdbookmark.sh"
-alias cdl='. $PWD/Scripts/last_cdbookmark.sh'
+alias cdm=". ~/Scripts/cdbookmark.sh"
+alias cdl='. ~/Scripts/last_cdbookmark.sh'
 alias clean-vim-swap='find ./ -type f -name "\.*sw[klmnop]";find ./ -type f -name "\.*sw[klmnop]" -delete'
 alias clean-vim-orig='find ./ -type f -name "*orig";find ./ -type f -name "*orig" -delete'
 

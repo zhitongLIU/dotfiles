@@ -39,7 +39,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
 
 " True Sublime Text style multiple selections for Vim
-Plug 'awochna/vim-raml'
+" Plug 'awochna/vim-raml'
 
 " This plugin is a front for ag
 Plug 'rking/ag.vim'
@@ -114,7 +114,7 @@ Plug 'godlygeek/tabular'
 " emmet-vim is a vim plug-in which provides support for expanding
 " abbreviations similar to emmet.
 " ex: div>p#foo$*3>a <c-y>,
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
 " Colors-----------------------------------------------------
 " !!!!! need to copy ./vim/plug/vim-colorschemes/colors to ./vim/colors
@@ -135,7 +135,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
 " HCL
-Plug 'b4b4r07/vim-hcl'
+" Plug 'b4b4r07/vim-hcl'
 
 " Other-------------------------------------------------------
 Plug 'vimwiki/vimwiki'
