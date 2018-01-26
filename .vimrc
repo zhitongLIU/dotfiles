@@ -34,6 +34,7 @@ Plug 'airblade/vim-gitgutter'
 
 " view git in vim
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " True Sublime Text style multiple selections for Vim
 Plug 'terryma/vim-multiple-cursors'
@@ -73,7 +74,7 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/majutsushi/tagbar'
 
 " EasyMotion provides a much simpler way to use some motions in vim
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 
 " System copy provides vim mappings for copying / pasting text to the os
 " specific clipboard
@@ -91,8 +92,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'yegappan/mru'
 
 " SnipMate aims to provide support for textual snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " Maintains a history of previous yanks, changes and deletes
 " Plug 'vim-scripts/YankRing.vim'
@@ -122,11 +123,11 @@ Plug 'flazz/vim-colorschemes'
 
 " Syntax for languages----------------------------------------
 " Syntax and indent files for Swift
-Plug 'https://github.com/keith/swift.vim'
-Plug 'leafgarland/typescript-vim'
+" Plug 'https://github.com/keith/swift.vim'
+" Plug 'leafgarland/typescript-vim'
 
 " syntax check
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 
 " ruby syntax
 Plug 'vim-ruby/vim-ruby'
@@ -182,7 +183,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface_Setting_Session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap H  :call HightLightCursor() <cr>
+nmap <leader>h  :call HightLightCursor() <cr>
 
 " air-line custom
 " preference

@@ -52,32 +52,31 @@ shift + alt - k : chunkc tiling::window --swap prev
 
 # send window to desktop and switch desktop
 # shift + cmd - x : `id=$(chunkc get _last_active_desktop); chunkc tiling::window -d $id; khd -p "cmd + alt - $id" &> /dev/null`
-# shift + cmd - z : chunkc tiling::window -d prev; khd -p "cmd + alt - z"
-# shift + cmd - c : chunkc tiling::window -d next; khd -p "cmd + alt - c"
-# shift + cmd - 1 : chunkc tiling::window -d 1; khd -p "cmd + alt - 1"
-# shift + cmd - 2 : chunkc tiling::window -d 2; khd -p "cmd + alt - 2"
-# shift + cmd - 3 : chunkc tiling::window -d 3; khd -p "cmd + alt - 3"
-# shift + cmd - 4 : chunkc tiling::window -d 4; khd -p "cmd + alt - 4"
-# shift + cmd - 5 : chunkc tiling::window -d 5; khd -p "cmd + alt - 5"
-# shift + cmd - 6 : chunkc tiling::window -d 6; khd -p "cmd + alt - 6"
+# shift + alt - z : chunkc tiling::window -d prev; khd -p "cmd + alt - z"
+# shift + alt - c : chunkc tiling::window -d next; khd -p "cmd + alt - c"
+# shift + alt - 1 : chunkc tiling::window -d 1; khd -p "cmd + alt - 1"
+# shift + alt - 2 : chunkc tiling::window -d 2; khd -p "cmd + alt - 2"
+# shift + alt - 3 : chunkc tiling::window -d 3; khd -p "cmd + alt - 3"
+# shift + alt - 4 : chunkc tiling::window -d 4; khd -p "cmd + alt - 4"
+# shift + alt - 5 : chunkc tiling::window -d 5; khd -p "cmd + alt - 5"
+# shift + alt - 6 : chunkc tiling::window -d 6; khd -p "cmd + alt - 6"
 
 # switch to last active desktop
 # cmd + alt - x   : `id=$(chunkc get _last_active_desktop); khd -p "cmd + alt - $id" &> /dev/null`
 
-# ====Monitor
 # focus monitor
-ctrl + alt - z  : chunkc tiling::monitor -f prev
-ctrl + alt - c  : chunkc tiling::monitor -f next
-ctrl + alt - 1  : chunkc tiling::monitor -f 1
-ctrl + alt - 2  : chunkc tiling::monitor -f 2
-ctrl + alt - 3  : chunkc tiling::monitor -f 3
+alt - z  : chunkc tiling::monitor -f prev
+alt - c  : chunkc tiling::monitor -f next
+alt - 1  : chunkc tiling::monitor -f 1
+alt - 2  : chunkc tiling::monitor -f 2
+alt - 3  : chunkc tiling::monitor -f 3
 
 # send window to monitor and follow focus
-# ctrl + cmd - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
-# ctrl + cmd - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
-# ctrl + cmd - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
-# ctrl + cmd - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
-# ctrl + cmd - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
+shift + alt - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
+shift + alt - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+shift + alt - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
+shift + alt - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
+shift + alt - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
 
 # increase region size
 alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
@@ -133,7 +132,7 @@ alt - t : chunkc tiling::window --toggle float
 # shift + alt - t : chunkc set window_float_next 1
 
 # change layout of desktop
-# ctrl + alt - a : chunkc tiling::desktop --layout bsp
+ctrl + alt - a : chunkc tiling::desktop --layout bsp
 # ctrl + alt - s : chunkc tiling::desktop --layout monocle
 # ctrl + alt - d : chunkc tiling::desktop --layout float
 
@@ -141,7 +140,7 @@ alt - t : chunkc tiling::window --toggle float
 
 # remap caps-lock to escape for this config only !!!
 # macos sierra can also perform this remap for a given keyboard
-- capslock : khd -p "- escape"
+# - capslock : khd -p "- escape"
 
 # key remap for norwegian layout \ { }
 cmd - 7 : khd -p "shift + alt - 7"

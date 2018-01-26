@@ -24,6 +24,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # Osx
   alias working='brew services start chunkwm; brew services start khd'
   alias normal='brew services stop chunkwm; brew services stop khd'
+  alias lockscreen='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 fi
 
 # my custom scripts
@@ -37,6 +38,7 @@ alias rc='bundle exec rails c'
 alias rs='bundle exec rails s'
 alias rb='bundle exec rubocop'
 alias rt='bundle exec rails test'
+alias rspec='bundle exec rspec'
 alias rst='git status | grep modified | sed "s/modified\://g" | grep '.rb' | sed "s/both//g" | xargs bundle exec rubocop'
 
 # git
