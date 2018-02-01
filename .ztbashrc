@@ -47,3 +47,4 @@ alias gb_remote_only="comm -13 <(git branch| sort) <(git branch -a | grep remote
 
 # docker
 alias kali_run='sudo docker run -t -i kalilinux/kali-linux-docker /bin/bash'
+alias k='kubectl'
