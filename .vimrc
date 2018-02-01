@@ -48,6 +48,9 @@ Plug 'rking/ag.vim'
 " mouse
 " Plug 'nvie/vim-togglemouse'
 
+" Make Vim handle line and column numbers in file names with a minimum of fuss
+Plug 'kopischke/vim-fetch'
+
 " vim-expand-region is a Vim plugin that allows you to visually select
 " increasingly larger regions of text using the same key
 " Plug 'terryma/vim-expand-region'
@@ -127,7 +130,7 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'leafgarland/typescript-vim'
 
 " syntax check
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " ruby syntax
 Plug 'vim-ruby/vim-ruby'
@@ -140,6 +143,8 @@ Plug 'tpope/vim-rails'
 
 " Other-------------------------------------------------------
 Plug 'vimwiki/vimwiki'
+" Plug 'mmai/vim-markdown-wiki'
+Plug 'suan/vim-instant-markdown'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -242,6 +247,11 @@ nmap <leader>dl :diffget //3 <CR> :diffupdate <CR>
 
 " close all panes except current
 nmap <leader>o :only <CR>
+
+" Plugin identline
+let g:indentLine_enabled = 1
+nmap <leader>i :IndentLinesToggle
+
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edit_setting_Session
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -450,6 +460,17 @@ set encoding=utf8
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+" plug vimwiki vim-instant-markdown
+set nocompatible
+" let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:instant_markdown_autostart = 0	" disable autostart
+map <leader>md :InstantMarkdownPreview<CR>
+let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/templates/',
+          \ 'template_default': 'default', 'syntax': 'markdown', 'ext': '.md',
+          \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
+          \ 'template_ext': '.tpl'}]
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Developpeur_settion_Settion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
