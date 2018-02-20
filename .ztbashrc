@@ -1,5 +1,7 @@
 # My custom bashrc
 
+alias ztsource='source ~/.ztbashrc'
+
 # Linux
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias copy-clip='xclip -selection clipboard'
@@ -39,7 +41,9 @@ alias rs='bundle exec rails s'
 alias rb='bundle exec rubocop'
 alias rt='bundle exec rails test'
 alias rspec='bundle exec rspec'
+alias loop_rspec='watch -n5 bundle exec rspec'
 alias rst='git status | grep modified | sed "s/modified\://g" | grep '.rb' | sed "s/both//g" | xargs bundle exec rubocop'
+alias be='bundle exec'
 
 # git
 alias gb_local_only="comm -23  <(git branch| sort) <(git branch -a | grep remotes | sed 's/remotes\/origin\///g'| sort)"
@@ -48,3 +52,11 @@ alias gb_remote_only="comm -13 <(git branch| sort) <(git branch -a | grep remote
 # docker
 alias kali_run='sudo docker run -t -i kalilinux/kali-linux-docker /bin/bash'
 alias k='kubectl'
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}"'
+alias dkill="docker kill $(docker ps -q)"
+alias dlogs='docker logs'
+
+export GOPATH=$HOME/Go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin

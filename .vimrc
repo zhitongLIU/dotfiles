@@ -77,7 +77,7 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/majutsushi/tagbar'
 
 " EasyMotion provides a much simpler way to use some motions in vim
-" Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 " System copy provides vim mappings for copying / pasting text to the os
 " specific clipboard
@@ -95,8 +95,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'yegappan/mru'
 
 " SnipMate aims to provide support for textual snippets
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Maintains a history of previous yanks, changes and deletes
 " Plug 'vim-scripts/YankRing.vim'
@@ -123,7 +123,7 @@ Plug 'godlygeek/tabular'
 " Colors-----------------------------------------------------
 " !!!!! need to copy ./vim/plug/vim-colorschemes/colors to ./vim/colors
 Plug 'flazz/vim-colorschemes'
-
+"
 " Syntax for languages----------------------------------------
 " Syntax and indent files for Swift
 " Plug 'https://github.com/keith/swift.vim'
@@ -133,17 +133,20 @@ Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/syntastic'
 
 " ruby syntax
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 
 " rails syntax
 Plug 'tpope/vim-rails'
+
+" Go
+Plug 'fatih/vim-go'
 
 " HCL
 " Plug 'b4b4r07/vim-hcl'
 
 " Other-------------------------------------------------------
 Plug 'vimwiki/vimwiki'
-" Plug 'mmai/vim-markdown-wiki'
+Plug 'mmai/vim-markdown-wiki'
 Plug 'suan/vim-instant-markdown'
 
 " Add plugins to &runtimepath
@@ -393,6 +396,13 @@ nmap <Space> /
 
 " Plugin - ctrlp setting
 " nmap <c-p> :CtrlP<CR>
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
+\ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
+\ 'link': '\v\.__INCLUDE_VERSION__$',
+\}
+
+
 
 " Plugin - easy moiton
 " <Leader>f{char} to move to {char}
@@ -430,7 +440,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " map <Leader>g :LustyBufferGrep<CR>
 
 " Plugin - ag.vim
-" map <Leader>a :Ag --ignore 'tags' --ignore '*.yml' \
+map <Leader>a :Ag --ignore 'tags' --ignore '*.yml' \
 let g:ag_working_path_mode="r"
 
 " LustyExplorer default setting
@@ -452,6 +462,9 @@ let g:ag_working_path_mode="r"
 " Syntax color display
 " set syntax=on
 syntax enable
+set regexpengine=1
+set lazyredraw
+
 " autocmd BufNewFile,BufRead,FileReadPre *.yml set syntax=false
 nmap <leader>s :call SyntaxToggle()<CR>
 
