@@ -277,7 +277,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " the first ../ is relative to ~/.vim/, second is the UltiSnipsEdit load place
 " let g:UltiSnipsSnippetDirectories=["../UltiSnips", "~/UltiSnips"]
-let g:UltiSnipsSnippetDirectories=["../UltiSnips", "~/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["../dotfiles/UltiSnips", "~/dotfiles/UltiSnips"]
 let g:UltiSnipsEnableSnipMate = 0
 
 nmap s <S-s>
