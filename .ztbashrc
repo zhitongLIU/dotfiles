@@ -26,6 +26,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # Osx
   alias working='brew services start chunkwm; brew services start khd'
   alias normal='brew services stop chunkwm; brew services stop khd'
+  alias rework='brew services stop chunkwm; brew services stop khd; brew services start chunkwm; brew services start khd'
   alias lockscreen='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
   alias screenlock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 fi

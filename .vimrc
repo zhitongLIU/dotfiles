@@ -45,6 +45,8 @@ Plug 'terryma/vim-multiple-cursors'
 " This plugin is a front for ag
 Plug 'rking/ag.vim'
 
+Plug 'ervandew/supertab'
+
 " mouse
 " Plug 'nvie/vim-togglemouse'
 
@@ -96,7 +98,7 @@ Plug 'yegappan/mru'
 
 " SnipMate aims to provide support for textual snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 " Maintains a history of previous yanks, changes and deletes
 " Plug 'vim-scripts/YankRing.vim'
@@ -273,6 +275,11 @@ set wrap
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" the first ../ is relative to ~/.vim/, second is the UltiSnipsEdit load place
+" let g:UltiSnipsSnippetDirectories=["../UltiSnips", "~/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["../UltiSnips", "~/UltiSnips"]
+let g:UltiSnipsEnableSnipMate = 0
+
 nmap s <S-s>
 nmap ; %
 
@@ -305,7 +312,7 @@ autocmd BufWritePre * :call StripTrailingWhitespace()
 " map j gj
 " map k gk
 
-nmap _ :TagbarToggle<CR>
+nmap - :TagbarToggle<CR>
 let g:tagbar_left = 1
 
 " Plugin - ultra-snip setting
@@ -315,6 +322,19 @@ let g:tagbar_left = 1
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+nmap _ :UltiSnipsEdit<CR>
+" make YCM compatible with UltiSnips (using supertab)
+"
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
 let g:ycm_filetype_blacklist = { 'yaml': 1 }
 
 " Smart way to move between windows
@@ -393,6 +413,7 @@ set hlsearch
 
 " Use space key to research
 nmap <Space> /
+map <leader>g :GoDocBrowser<CR>
 
 " Plugin - ctrlp setting
 " nmap <c-p> :CtrlP<CR>
