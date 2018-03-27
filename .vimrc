@@ -190,6 +190,9 @@ if has("unix")
     let g:system_copy#paste_command='xclip -sel clipboard -o'
   endif
 endif
+
+" Copy current file path to clipboard
+nmap <leader>d :call system(g:system_copy#copy_command, expand("%:p"))<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface_Setting_Session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
