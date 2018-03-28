@@ -1,0 +1,131 @@
+########################################
+# Ruby snippets - for Rails, see below #
+########################################
+
+snippet rdoc "rdoc"
+#
+# Desribe the behaviour of the method ${1:method_name}(${2:argument_name})
+#
+# ===== Attributes
+#
+# * +$2+ - Document the first attribute
+#
+# ===== Options
+#
+# describe options
+#
+# * +:key+ - :key is in options params
+#
+# ===== Returns
+#
+# describe returns
+#
+# ===== Examples
+#
+#    $1($2)
+#
+endsnippet
+
+snippet def "def"
+#
+# Desribe the behaviour of the method ${1:method_name}(${2:argument_name})
+#
+# ===== Attributes
+#
+# * +$2+ - Document the first attribute
+#
+# ===== Options
+#
+# describe options
+#
+# * +:key+ - :key is in options params
+#
+# ===== Returns
+#
+# describe returns
+#
+# ===== Examples
+#
+#    $1($2)
+#
+def $1($2)
+end
+endsnippet
+##################
+# RSpec snippets #
+##################
+
+snippet it "it"
+it "${1:spec_name}" do
+	${2}
+end
+endsnippet
+
+snippet itp "itp"
+it "${1:spec_name}"
+${2}
+endsnippet
+
+snippet its "its"
+its(:${1:method}) { should ${2} }
+endsnippet
+
+snippet itsn "itsn"
+its(:${1:method}) { should_not ${2} }
+endsnippet
+
+snippet desc "desc"
+describe ${1:class_name} do
+	${2}
+end
+endsnippet
+
+snippet cont "cont"
+context "${1:message}" do
+	${2}
+end
+endsnippet
+
+snippet bef "bef"
+before :${1:each} do
+	${2}
+end
+endsnippet
+
+snippet aft "aft"
+after :${1:each} do
+	${2}
+end
+endsnippet
+
+snippet let "let"
+let(:${1:method}) { ${2} }
+endsnippet
+
+snippet subj "subj"
+subject { ${1} }
+endsnippet
+
+snippet spec "spec"
+specify { subject.${1} }
+endsnippet
+
+snippet exp "exp"
+expect(${1:object}).to ${2}
+endsnippet
+
+snippet btr "btr"
+be_true
+endsnippet
+
+snippet bfa "bfa"
+be_false
+endsnippet
+
+snippet shared "shared"
+shared_examples "${1:shared examples name}" ${2}
+endsnippet
+
+snippet itb "itb"
+it_behaves_like "${1:shared examples name}"${2}
+endsnippet
