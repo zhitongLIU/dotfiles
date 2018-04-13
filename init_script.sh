@@ -16,3 +16,10 @@ do
     ln -sf "${PWD}/$file" "${HOME}/"
   fi
 done
+
+# install tmux plugin
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# install vim plugin
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

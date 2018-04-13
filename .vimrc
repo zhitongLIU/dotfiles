@@ -301,8 +301,8 @@ autocmd BufWritePre * :call StripTrailingWhitespace()
  vmap <Tab>= :Tabularize /=<CR>
  nmap <Tab>: :Tabularize /:\zs<CR>
  vmap <Tab>: :Tabularize /:\zs<CR>
- vmap <Tab><Tab>: :Tabularize
- nmap <Tab><Tab>: :Tabularize
+ vmap <Tab>/: :Tabularize /
+ nmap <Tab>/: :Tabularize /
 " endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
