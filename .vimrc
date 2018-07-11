@@ -160,6 +160,11 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global_Setting_Session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('python3')
+  silent! python3 1
+endif
+
 " no swp files
 set nobackup
 set noswapfile
@@ -230,7 +235,7 @@ set laststatus=2
 " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " longest line display
-set cc=80
+set cc=120
 
 " Line number display
 set nu
