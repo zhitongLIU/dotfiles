@@ -197,7 +197,8 @@ if has("unix")
 endif
 
 " Copy current file path to clipboard
-nmap <leader>d :call system(g:system_copy#copy_command, expand("%:p"))<CR>
+" nmap <leader>d :call system(g:system_copy#copy_command, expand("%:p"))<CR>
+nmap <leader>d :call system(g:system_copy#copy_command, expand("%"))<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface_Setting_Session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
