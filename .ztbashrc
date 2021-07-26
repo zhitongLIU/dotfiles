@@ -2,14 +2,15 @@
 
 alias ztsource='source ~/.ztbashrc'
 
+alias googleWeather='~/Scripts/googleBasedScripts/googleWeather.sh'
+alias googleNews='~/Scripts/googleBasedScripts/googleNews.sh'
+
 # Linux
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias copy-clip='xclip -selection clipboard'
   alias paste-clip='xclip -o'
   alias upsync_dropbox='~/Dropbox/dropbox_scripts/sync_dropbox.sh -u'
   alias downsync_dropbox='~/Dropbox/dropbox_scripts/sync_dropbox.sh -d'
-  alias googleWeather='~/Scripts/googleBasedScripts/googleWeather.sh'
-  alias googleNews='~/Scripts/googleBasedScripts/googleNews.sh'
 # alias vim='. ~/Scripts/vim2pointOption.sh'
   alias rpt='bash ~/Scripts/rails_parallel_test.sh'
   alias second_screen_config='. ~/Scripts/lbn_ubuntu/seconde_screen.sh'
@@ -62,3 +63,9 @@ export GOPATH=$HOME/Go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+
+alias untilfail='~/Scripts/untilfail.sh'
+alias gb_merged='git branch -r --merged'
+alias gb_merged_delete="git branch -r --merged | grep origin | grep -v '>' | grep -v master | xargs -L1 | sed 's/origin\///g' | xargs git push origin --delete"
+
+alias sync_development="~/Scripts/sync_development.sh"

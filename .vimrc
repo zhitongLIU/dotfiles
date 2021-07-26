@@ -45,7 +45,7 @@ Plug 'terryma/vim-multiple-cursors'
 " This plugin is a front for ag
 Plug 'rking/ag.vim'
 
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " mouse
 " Plug 'nvie/vim-togglemouse'
@@ -58,7 +58,8 @@ Plug 'kopischke/vim-fetch'
 " Plug 'terryma/vim-expand-region'
 
 " fzf is a general-purpose command-line fuzzy finder.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Surround.vim is all about "surroundings": parentheses, brackets, quotes
@@ -66,7 +67,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 
 " Run your favorite search tool from Vim, with an enhanced results list.
 " Plug 'mileszs/ack.vim'
@@ -88,17 +89,25 @@ Plug 'christoomey/vim-system-copy'
 " Auto trigger complete popup menu
 " !!!!! Install CMake then use this to real install
 " cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
+" linux install
+" sudo apt-get install python2.7-dev cmake
+"
 " may use this to change python lib:
 " export EXTRA_CMAKE_ARGS="-DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so.1"
 " may need to install vim-nox
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+
+" Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Most Recently Used (MRU) Vim plugin
 Plug 'yegappan/mru'
 
 " SnipMate aims to provide support for textual snippets
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
+
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " Maintains a history of previous yanks, changes and deletes
 " Plug 'vim-scripts/YankRing.vim'
@@ -120,7 +129,11 @@ Plug 'godlygeek/tabular'
 " emmet-vim is a vim plug-in which provides support for expanding
 " abbreviations similar to emmet.
 " ex: div>p#foo$*3>a <c-y>,
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
+
+" Plug 'davidhalter/jedi-vim'
+
+Plug 'alvan/vim-closetag'
 
 " Colors-----------------------------------------------------
 " !!!!! need to copy ./vim/plug/vim-colorschemes/colors to ./vim/colors
@@ -131,14 +144,23 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'https://github.com/keith/swift.vim'
 " Plug 'leafgarland/typescript-vim'
 
+" vuejs
+Plug 'posva/vim-vue'
+
+" bootstrap
+
 " syntax check
 Plug 'scrooloose/syntastic'
 
 " ruby syntax
 " Plug 'vim-ruby/vim-ruby'
 
+Plug 'tpope/vim-haml'
+
 " rails syntax
-Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-rails'
+
+Plug 'nono/jquery.vim'
 
 " Go
 Plug 'fatih/vim-go'
@@ -225,6 +247,7 @@ endif
 " colors desert
 " colors wombat256mod
 colors candycode
+" colors candy
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -269,6 +292,15 @@ nmap <leader>i :IndentLinesToggle
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edit_setting_Session
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin coc
+" let g:coc_global_extensions = ['coc-solargraph', 'coc-go']
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
 " tab space
 set autoindent
 set shiftwidth=2
@@ -286,6 +318,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " the first ../ is relative to ~/.vim/, second is the UltiSnipsEdit load place
 " let g:UltiSnipsSnippetDirectories=["../UltiSnips", "~/UltiSnips"]
+
 let g:UltiSnipsSnippetDirectories=["../dotfiles/UltiSnips", "~/dotfiles/UltiSnips"]
 let g:UltiSnipsEnableSnipMate = 0
 
@@ -328,9 +361,9 @@ let g:tagbar_left = 1
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 "
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipsExpandTrigger="<c-space>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 nmap _ :UltiSnipsEdit<CR>
 " make YCM compatible with UltiSnips (using supertab)
 "
@@ -426,11 +459,11 @@ map <leader>g :GoDocBrowser<CR>
 
 " Plugin - ctrlp setting
 " nmap <c-p> :CtrlP<CR>
-let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
-\ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
-\ 'link': '\v\.__INCLUDE_VERSION__$',
-\}
+" let g:ctrlp_custom_ignore = {
+" \ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
+" \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
+" \ 'link': '\v\.__INCLUDE_VERSION__$',
+" \}
 
 
 
@@ -441,6 +474,13 @@ map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 let g:FZF_DEFAULT_COMMAND='ag'
+
+" Plugin -fzf
+nnoremap <C-p> :GFiles<CR>
+let g:fzf_preview_window = 'right:60%'
+" command! -bang -nargs=? -complete=dir Files
+"     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+
 
 command! -bang -nargs=* Ag
 \ call fzf#vim#ag(<q-args>,
@@ -470,7 +510,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " map <Leader>g :LustyBufferGrep<CR>
 
 " Plugin - ag.vim
-map <Leader>a :Ag --ignore 'tags' --ignore '*.yml' \
+map <Leader>a :Ag --ignore 'tags' --ignore '*.yml'<SPACE>
 let g:ag_working_path_mode="r"
 
 " LustyExplorer default setting
@@ -495,10 +535,19 @@ syntax enable
 set regexpengine=1
 set lazyredraw
 
+" vuejs
+let g:vue_pre_processors = 'detect_on_enter'
+
+
 " autocmd BufNewFile,BufRead,FileReadPre *.yml set syntax=false
 nmap <leader>s :call SyntaxToggle()<CR>
 
 set encoding=utf8
+
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" plug emmet
+let g:user_emmet_leader_key=','
 
 " Enable filetype plugins
 filetype plugin on
@@ -518,6 +567,9 @@ let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/template
 " Developpeur_settion_Settion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>e :call RunCurrentFile()<CR>
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom_Functions_Session
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
