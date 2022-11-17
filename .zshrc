@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.ztbashrc
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # added by travis gem
 [ -f /Users/zhitong/.travis/travis.sh ] && source /Users/zhitong/.travis/travis.sh

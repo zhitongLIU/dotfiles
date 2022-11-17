@@ -17,6 +17,9 @@
 " Plugins_Sesstion
 call plug#begin('~/.vim/plugged')
 
+" github copilot
+" Plug 'github/copilot.vim'
+
 " Make sure you use single quotes
 Plug 'tpope/vim-sensible'
 
@@ -49,6 +52,10 @@ Plug 'rking/ag.vim'
 
 " mouse
 " Plug 'nvie/vim-togglemouse'
+
+" This plugin is used for displaying thin vertical lines at each indentation
+" level for code indented with spaces
+Plug 'Yggdroot/indentLine'
 
 " Make Vim handle line and column numbers in file names with a minimum of fuss
 Plug 'kopischke/vim-fetch'
@@ -98,13 +105,14 @@ Plug 'christoomey/vim-system-copy'
 " Plug 'Valloric/YouCompleteMe'
 
 " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Most Recently Used (MRU) Vim plugin
 Plug 'yegappan/mru'
 
 " SnipMate aims to provide support for textual snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
@@ -118,10 +126,6 @@ Plug 'https://github.com/tpope/vim-commentary'
 " Lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" This plugin is used for displaying thin vertical lines at each indentation
-" level for code indented with spaces
-Plug 'Yggdroot/indentLine'
 
 " Vim script for text filtering and alignment
 Plug 'godlygeek/tabular'
@@ -144,8 +148,19 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'https://github.com/keith/swift.vim'
 " Plug 'leafgarland/typescript-vim'
 
+" reactjs
+" Plug 'neoclide/vim-jsx-improve'
+
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html',  'reactjs'] }
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
 " vuejs
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
 
 " bootstrap
 
@@ -158,9 +173,9 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-haml'
 
 " rails syntax
-" Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 
-Plug 'nono/jquery.vim'
+" Plug 'nono/jquery.vim'
 
 " Go
 Plug 'fatih/vim-go'
@@ -273,7 +288,7 @@ set guioptions-=e
 " Plugin - fugitive
 nmap <leader>ge :Gedit <CR>
 nmap <leader>gs :Gstatus <CR>
-nmap <leader>gb :Gblame <CR>
+nmap <leader>gb :Git blame <CR>
 nmap <leader>gd :Gvdiff <CR>
 nmap <leader>gl :Glog <CR>
 nmap <leader>gw :Gwrite <CR>
@@ -285,21 +300,49 @@ nmap <leader>dl :diffget //3 <CR> :diffupdate <CR>
 " close all panes except current
 nmap <leader>o :only <CR>
 
-" Plugin identline
+" Plugin IndentLine
 let g:indentLine_enabled = 1
 nmap <leader>i :IndentLinesToggle
+" set conceallevel=1
+" let g:indentLine_conceallevel=1
 
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edit_setting_Session
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin coc
-" let g:coc_global_extensions = ['coc-solargraph', 'coc-go']
+let g:coc_global_extensions = ['coc-solargraph']
+
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Use <c-space> to trigger completion:
 
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Use <CR> to confirm completion, use:
+" inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+
+" Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode: >
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " tab space
 set autoindent
@@ -343,6 +386,9 @@ autocmd BufWritePre * :call StripTrailingWhitespace()
  vmap <Tab>/: :Tabularize /
  nmap <Tab>/: :Tabularize /
 " endif
+
+
+nmap <leader>c :call system(g:system_copy#copy_command, RailsClass())<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Navigation_Setting_Session
@@ -688,6 +734,29 @@ function! RunCurrentFile()
     :!g++ %
   elseif &ft == 'sh'
     :!%:p
+  endif
+endfunction
+
+function! RailsClass()
+  let path = expand("%")
+  let no_rb_path = substitute(path, '\.rb$', '', '')
+  let splits = split(no_rb_path, '\/')
+  " for rails convention remove root file
+  let cleanned_splits = splits[1:-1]
+  let res = join(map(cleanned_splits, {idx, val -> Camelcase(val) }), '::')
+
+  return res
+endfunction
+
+
+function! Camelcase(word)
+  let word = substitute(a:word, '-', '_', 'g')
+  if word !~# '_' && word =~# '\l'
+    return substitute(word,'^.','\U&','')
+  else
+    let l:splits = split(word, '_')
+    return join(map(splits, {idx, val -> substitute(val,'^.','\U&','') }), '')
+    " return substitute(word,'\C\(_\)\=\(.\)','\=submatch(1)==""?tolower(submatch(2)) : toupper(submatch(2))','g')
   endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
