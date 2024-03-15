@@ -45,7 +45,7 @@ alias rb='bundle exec rubocop'
 alias rt='bundle exec rails test'
 alias rspec='bundle exec rspec'
 alias loop_rspec='watch -n5 bundle exec rspec'
-alias rst='git status | grep modified | sed "s/modified\://g" | grep '.rb' | sed "s/both//g" | xargs bundle exec rubocop'
+alias rst='git status | egrep "(modified|new)" | sed "s/modified\://g" | sed "s/new file\://g" |grep '.rb' | sed "s/both//g" | xargs bundle exec rubocop'
 alias be='bundle exec'
 
 # git

@@ -18,7 +18,7 @@
 call plug#begin('~/.vim/plugged')
 
 " github copilot
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 " Make sure you use single quotes
 Plug 'tpope/vim-sensible'
@@ -139,6 +139,8 @@ Plug 'mattn/emmet-vim'
 
 Plug 'alvan/vim-closetag'
 
+Plug 'kshenoy/vim-signature'
+
 " Colors-----------------------------------------------------
 " !!!!! need to copy ./vim/plug/vim-colorschemes/colors to ./vim/colors
 Plug 'flazz/vim-colorschemes'
@@ -149,13 +151,15 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'leafgarland/typescript-vim'
 
 " reactjs
-" Plug 'neoclide/vim-jsx-improve'
-
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+Plug 'dense-analysis/ale'
 
-" Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html',  'reactjs'] }
+" Plug 'prettier/vim-prettier'
+
 " let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
@@ -309,8 +313,13 @@ nmap <leader>i :IndentLinesToggle
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edit_setting_Session
 """""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" copilot
+
+map <c-\> :Copilot panel<CR>
+
 " Plugin coc
-let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver']
+nnoremap <silent> K :call CocAction('doHover')<CR>
 
 " inoremap <silent><expr> <TAB>
 "       \ pumvisible() ? "\<C-n>" :
@@ -325,6 +334,27 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+
+
+nmap <leader>ggd <Plug>(coc-definition)
+nmap <leader>ggy <Plug>(coc-type-definition)
+nmap <leader>ggi <Plug>(coc-implementation)
+nmap <leader>ggr <Plug>(coc-references)
+nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>gg[ <Plug>(coc-diagnostic-prev)
+nmap <leader>gg] <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+nnoremap <leader>cr :CocRestart
+
+" Code actions are automated changes or fixes for an issue, such as
+" automatically importing a missing symbol.
+nmap <leader>do <Plug>(coc-codeaction)
+
+" Coc offers intelligent symbol renaming, a common action in any IDE:
+nmap <leader>rn <Plug>(coc-rename)
 
 " Use <CR> to confirm completion, use:
 " inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
@@ -375,7 +405,7 @@ nmap ; %
 " nmap <leader>y :YRShow<CR>
 
 " auto remove trailling space when saving
-autocmd BufWritePre * :call StripTrailingWhitespace()
+" autocmd BufWritePre * :call StripTrailingWhitespace()
 
 
 " if exists(":Tabularize")
@@ -582,15 +612,60 @@ set regexpengine=1
 set lazyredraw
 
 " vuejs
-let g:vue_pre_processors = 'detect_on_enter'
+" let g:vue_pre_processors = 'detect_on_enter'
 
 
 " autocmd BufNewFile,BufRead,FileReadPre *.yml set syntax=false
-nmap <leader>s :call SyntaxToggle()<CR>
+" nmap <leader>s :call SyntaxToggle()<CR>
 
-set encoding=utf8
+" set encoding=utf8
 
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+" au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+"reactjs
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+" if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+"   let g:coc_global_extensions += ['coc-eslint']
+" endif
+
+
+let g:ale_fixers = {}
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_linters = {
+    \'javascript': ['eslint'],
+      \'vue': ['eslint', 'stylelint', 'tsserver'],
+      \}
+
+let g:ale_fixers = {
+    \'javascript': ['prettier', 'eslint'],
+      \'vue': ['eslint', 'stylelint'],
+      \}
+
+let g:ale_linters_explicit = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_fix_on_save = 1
+
+" auto tooltips
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#float#has_float() == 0 && CocHasProvider('hover') == 1)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(100, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
 
 " plug emmet
 let g:user_emmet_leader_key=','
@@ -792,3 +867,10 @@ let @h = "0viwS'f:xa=> \ej"
 let @s = "0ds'f=xxhi:\elx\ej"
 " add new line after ,
 call setreg('n', "f,a\n\e")
+
+"-------
+" set color for coc auto complete
+hi CocMenuSel ctermbg=White ctermfg=Black
+" hi CocFloating ctermbg=White ctermfg=Black
+"guifg guibg
+
