@@ -64,6 +64,7 @@ plugins=(
   docker
   kubectl
   zsh-completions
+  iterm-tab-color
 )
 
 source $ZSH/oh-my-zsh.sh
