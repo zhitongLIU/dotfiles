@@ -25,9 +25,10 @@ Plug 'tpope/vim-sensible'
 
 " The NERD tree allows you to explore your filesystem and to open files and
 " directories.
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'ryanoasis/vim-devicons'
 
 "
 Plug 'gcmt/taboo.vim'
@@ -618,7 +619,7 @@ set lazyredraw
 " autocmd BufNewFile,BufRead,FileReadPre *.yml set syntax=false
 " nmap <leader>s :call SyntaxToggle()<CR>
 
-" set encoding=utf8
+set encoding=utf8
 
 " au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
